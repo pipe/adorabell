@@ -1,0 +1,29 @@
+How to setup BLE to use as a pairing mechanism on pi zero w
+cd 
+sudo apt-get update
+sudo apt-get install oracle-java8-jdk
+sudo apt-get install mpg123
+sudo apt-get install npm nodejs
+sudo npm -g install npm node-gyp
+sudo apt-get install libusb-dev libudev-dev
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+mkdir pair
+cd pair 
+npm install bluetooth-hci-socket
+npm install eddystone-beacon
+npm install wireless-tools
+sudo systemctl stop bluetooth
+sudo systemctl disable bluetooth
+sudo setcap cap_net_raw+eip $(eval readlink -f `which node`)
+sudo rfkill unblock bluetooth 
+sudo hciconfig hci0 up
+
+
+curl -sS https://get.pimoroni.com/speakerphat | bash
+
+node main.js BDE3CC6CA17A60B03C43373669EE7CA6 5D67FEFF729266494C13118CECE2C2A3 D3E53A6EA731A9C8F8C8FFC52B247D08
+
+test with bl.html
+
+notice that btwan.js requires the ctrl_interface line in wpa_supplicant to be in place.
+ also copy pair, reset etc pipe.sh

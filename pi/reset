@@ -1,0 +1,14 @@
+#!/bin/sh
+rm ipsecert.ks
+#espeak "Resetting doorbell. So long and thanks for all the fish!"
+gpio write 0 1
+gpio write 3 1
+mpg123 -q audio/en/15.mp3
+sudo wpa_cli remove_network 0
+sudo wpa_cli remove_network 1
+sudo wpa_cli remove_network 2
+sudo wpa_cli save_config
+sync;sync;
+sleep 5
+sudo shutdown -h now
+

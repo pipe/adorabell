@@ -1,0 +1,17 @@
+How to setup BLE to use as a pairing mechanism on C.H.I.P
+
+curl -sL https://deb.nodesource.com/setup_7.x | bash -
+apt-get install -y nodejs
+sudo apt-get update
+sudo apt-get install npm nodejs
+sudo npm -g install npm node-gyp
+sudo apt-get install libusb-dev libudev-dev
+sudo npm install bluetooth-hci-socket
+npm install eddystone-beacon
+sudo systemctl stop bluetooth
+sudo systemctl disable bluetooth
+rfkill unblock bluetooth 
+sudo hciconfig hci0 up
+node btwan.js BDE3CC6CA17A60B03C43373669EE7CA6 5D67FEFF729266494C13118CECE2C2A3 D3E53A6EA731A9C8F8C8FFC52B247D08
+
+
